@@ -1,0 +1,9 @@
+<launch>
+	<arg name="lrs_topic" />
+	<arg name="lrs_pc2_topic" />
+
+	<node pkg="lrs_tools" type="lrs_to_pc2.py" name="lrs_to_pc2" output="screen">
+		<param name="lrs_topic"					value="$(arg lrs_topic)" />
+        <param name="lrs_pc2_topic"				value="$(arg lrs_pc2_topic)" />
+	</node>
+</launch>

@@ -1,0 +1,23 @@
+	
+<launch>
+    // LRS to Grid Image Converter -----------------------------------
+    <param name="/use_sim_time" 				value="true" />
+	<node pkg="lrs_tools" type="lrs_to_grid.py" name="lrs_to_grid" output="screen">
+		<param name="lrs_topic"					value="/lrs0/scan" />
+        <param name="save_path"				    value="$(find lrs_tools)/saved_lrs_data" />
+
+        // map parameters
+        <param name="grid_size"					value="0.05" />
+        <param name="x_min"					    value="-5.0" />
+        <param name="x_max"					    value="100.0" />
+        <param name="y_min"					    value="-100.0" />
+        <param name="y_max"					    value="5.0" />
+	</node>
+
+    // TF publisher using Gazebo Info -----------------------------------
+    <node pkg="lrs_tools" type="gazebo_tf_publisher.py" name="gazebo_tf_publisher" output="screen">
+		<param name="model_name"					value="murata" />
+        <param name="base_frame_id"				    value="/base_link" />
+        <param name="global_frame_id"				value="/map" />
+	</node>
+</launch>
